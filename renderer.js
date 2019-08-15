@@ -1,5 +1,4 @@
 const { ipcRenderer } = require('electron');
-// import { ipcRenderer } from 'electron';
 
 const urlInput = document.querySelector('#urlInput');
 urlInput.addEventListener('keypress', (e) => {
