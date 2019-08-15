@@ -21,7 +21,7 @@
    - Regex를 이용하여 유효성을 검사
    - URL간 비교 가능
 - Request class
-  - http만 가능
+  - **http만 가능**
   - 요청 방식(method) 변경 가능
   - header 추가 및 변경 가능
   - header정보를 stringify하여 host에 요청
