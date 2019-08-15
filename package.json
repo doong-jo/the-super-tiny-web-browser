@@ -1,14 +1,15 @@
 {
-  "name": "day16-challenge",
+  "name": "the-super-tiny-web-browser",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
+    "start": "electron .",
     "test": "jest"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://doong-jo:tksekfk31@github.com/doong-jo/day16-challenge.git"
+    "url": "git+https://github.com/doong-jo/day16-challenge.git"
   },
   "author": "",
   "license": "ISC",
@@ -20,6 +21,7 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
+    "electron": "^6.0.2",
     "jest": "^24.8.0"
   }
 }

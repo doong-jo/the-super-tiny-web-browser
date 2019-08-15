@@ -1,14 +1,40 @@
 const { browse } = require('./network.js');
+const { app, ipcMain, BrowserWindow } = require('electron');
 
-process.stdout.write("Input URL : ");
-process.stdin.on("data", function (input) {
-    const urlString = input.toString().trim();
-    console.log('Start browse url : ' + urlString);
+const path = require('path');
+const url = require('url');
 
-    try { browse(urlString); } 
-    catch(e) { console.log(e.message); }
+let win;
 
-}.bind(this));
+function loadURL() {
+    win.loadURL(url.format({
+        pathname: path.join(__dirname, 'index.html'),
+        protocol: 'file:',
+        slashes: true
+    }));
+}
 
-// test
-// browse("http://zum.com");
+function createWindow() {
+    win = new BrowserWindow({
+        width: 1024,
+        height: 768,
+        webPreferences: {
+            nodeIntegration: true
+        }
+    });
+
+    loadURL(win);
+
+    win.webContents.openDevTools();
+}
+
+ipcMain.on('urlRequest', (e, url) => {
+    console.log('ipcMain on urlRequest', url);
+    try{
+        browse(url, loadURL);
+    } catch(e) {
+        console.log(e.message);
+    }
+});
+
+app.on('ready', createWindow);
