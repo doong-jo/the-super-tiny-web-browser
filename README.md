@@ -1,7 +1,7 @@
 # the-super-tiny-web-browser
 
 ## Intro
-최소한의 브라우저 동작을 구현한 프로젝트입니다.
+최소한의 브라우저 동작이 가능한 웹 브라우저입니다.
 
 **Request -> Response -> Rendering(Chromium)** 의 동작 방식을 가집니다.
 
