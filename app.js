@@ -25,7 +25,7 @@ function createWindow() {
 
     loadURL(win);
 
-    win.webContents.openDevTools();
+    // win.webContents.openDevTools();
 }
 
 ipcMain.on('urlRequest', (e, url) => {
