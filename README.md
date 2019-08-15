@@ -2,7 +2,7 @@
 **Electron, Node.js**
 
 ## Intro
-최소한의 브라우저 동작이 가능한 웹 브라우저입니다.
+웹브라우저의 학습목적으로 개발한 최소한의 브라우저 동작이 가능한 웹 브라우저입니다.
 
 **Request -> Response -> Rendering(Chromium)** 의 동작 방식을 가집니다.
 
@@ -21,6 +21,7 @@
    - Regex를 이용하여 유효성을 검사
    - URL간 비교 가능
 - Request class
+  - http만 가능
   - 요청 방식(method) 변경 가능
   - header 추가 및 변경 가능
   - header정보를 stringify하여 host에 요청
