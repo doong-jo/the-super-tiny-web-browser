@@ -75,7 +75,6 @@ module.exports = class URL {
                 groups: undefined 
             ]
         */
-
         
         this.scheme = regexArr[REGEX.SCHEME];
         this.www = regexArr[REGEX.WWW] ? regexArr[REGEX.WWW] : this.www;
@@ -94,8 +93,6 @@ module.exports = class URL {
             } else {
                 this.user = user_info[0].slice(0, -1);
             }
-            
-             // remove @
         }
         
         if( regexArr[REGEX.PATH] ) {
@@ -108,7 +105,6 @@ module.exports = class URL {
         this.invalid = false;
     }
 
-    // TODO : write url regex
     analysis(url) {
         try {
             this.validCheck(url);
