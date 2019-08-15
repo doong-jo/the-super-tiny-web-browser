@@ -1,8 +1,8 @@
 # the-super-tiny-web-browser
+**Electron, Node.js**
 
 ## Intro
 최소한의 브라우저 동작이 가능한 웹 브라우저입니다.
-Stack : Electron, Node.js
 
 **Request -> Response -> Rendering(Chromium)** 의 동작 방식을 가집니다.
 
