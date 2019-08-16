@@ -12,13 +12,13 @@
     "url": "git+https://github.com/doong-jo/day16-challenge.git"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/doong-jo/day16-challenge/issues"
   },
   "homepage": "https://github.com/doong-jo/day16-challenge#readme",
   "dependencies": {
-    "express": "^4.17.1"
+
   },
   "devDependencies": {
     "electron": "^6.0.2",
