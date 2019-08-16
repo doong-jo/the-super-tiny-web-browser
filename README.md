@@ -6,29 +6,6 @@
 
 **Request -> Response -> Rendering(Chromium)** 의 동작 방식을 가집니다.
 
-- URL class
-  - 다음과 같은 속성을 가진다.
-    - host : String
-    - lastPathComponent : String
-    - pathComponents : [String] //readonly
-    - port : Int
-    - query : String
-    - scheme : String
-    - isFileURL : Boolean
-    - user : String
-    - password : String
-    - absoluteString : String (computed property
-   - Regex를 이용하여 유효성을 검사
-   - URL간 비교 가능
-- Request class
-  - **http만 가능**
-  - 요청 방식(method) 변경 가능
-  - header 추가 및 변경 가능
-  - header정보를 stringify하여 host에 요청
-- Response class
-  - response 정보 구분하여 저장
-  - content-length 비교
-
 ## Usage
 ```bash
 # 실행
