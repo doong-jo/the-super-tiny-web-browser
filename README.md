@@ -1,5 +1,8 @@
 # the-super-tiny-web-browser
-**Electron, Node.js**
+
+![version](https://img.shields.io/badge/Electron-6.0.2-green.svg)
+![version](https://img.shields.io/badge/Node-11.6.0-green.svg)
+![version](https://img.shields.io/badge/npm-6.10.3-green.svg)
 
 ## Intro
 웹브라우저의 학습목적으로 개발한 최소한의 브라우저 기능이 동작이 가능한 웹 브라우저입니다.
