@@ -60,18 +60,18 @@ module.exports = class URL {
         const regexArr = regex.exec(url);
         /*
             example
-            url = "http://www.user_name:pass-word@boostcamp.connect-foundation.or.kr:2019/first/second/last?query=ab&param=12"
+            url = "http://www.user_name:pass-word@naver.com:2019/first/second/last?query=ab&param=12"
             [ 
-                'http://www.user_name:pass-word@boostcamp.connect-foundation.or.kr:2019/first/second/last?query=ab&param=12',
+                'http://www.user_name:pass-word@naver.com:2019/first/second/last?query=ab&param=12',
                 'http',
                 'www.',
                 'user_name:pass-word@',
-                'boostcamp.connect-foundation.or.kr',
+                'naver.com',
                 '2019',
                 '/first/second/last',
                 'query=ab&param=12',
                 index: 0,
-                input: 'http://www.user_name:pass-word@boostcamp.connect-foundation.or.kr:2019/first/second/last?query=ab&param=12',
+                input: 'http://www.user_name:pass-word@naver.com:2019/first/second/last?query=ab&param=12',
                 groups: undefined 
             ]
         */
