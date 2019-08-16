@@ -1,7 +1,7 @@
 {
   "name": "the-super-tiny-web-browser",
   "version": "1.0.0",
-  "description": "",
+  "description": "Possibly the smallest web browser ever",
   "main": "app.js",
   "scripts": {
     "start": "electron .",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/doong-jo/day16-challenge.git"
+    "url": "git+https://github.com/doong-jo/the-super-tiny-web-browser.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/doong-jo/day16-challenge/issues"
+    "url": "https://github.com/doong-jo/the-super-tiny-web-browser/issues"
   },
-  "homepage": "https://github.com/doong-jo/day16-challenge#readme",
+  "homepage": "https://github.com/doong-jo/the-super-tiny-web-browser#readme",
   "dependencies": {
 
   },
