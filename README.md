@@ -18,7 +18,7 @@ npm install
 npm start
 ```
 
-#### 예시
+### Example
 
 **상단의 입력 상자에 url을 입력 후 Enter 키를 누릅니다.**
 
