@@ -23,7 +23,7 @@ function createWindow() {
         }
     });
 
-    loadURL(win);
+    loadURL();
 
     win.webContents.openDevTools();
 }
