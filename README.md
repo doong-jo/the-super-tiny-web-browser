@@ -4,8 +4,6 @@
 ## Intro
 웹브라우저의 학습목적으로 개발한 최소한의 브라우저 동작이 가능한 웹 브라우저입니다.
 
-**Request -> Response -> Rendering(Chromium)** 의 동작 방식을 가집니다.
-
 ## Usage
 ```bash
 # 실행
