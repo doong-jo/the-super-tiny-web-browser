@@ -1,7 +1,7 @@
 const 
     URL = require('./url.js');
 
-let url = new URL("http://user_name:pass-word@boostcamp.connect-foundation.or.kr:2019/first/second/last?query=ab&param=12");
+let url = new URL("http://user_name:pass-word@naver.com:2019/first/second/last?query=ab&param=12");
 console.log(url.absoluteString);
 
 console.log('add \"basecamp\" path');
@@ -9,7 +9,7 @@ url.appendPathComponent("basecamp");
 console.log('add \"camp\" path');
 url.appendPathComponent("camp");
 
-//url.absoluteString = "http://user_name:pass-word@boostcamp.connect-foundation.or.kr:2019/first/second/last/basecamp/camp?query=ab&param=12"
+//url.absoluteString = "http://user_name:pass-word@naver.com:2019/first/second/last/basecamp/camp?query=ab&param=12"
 console.log(url.absoluteString);
 console.log('delete path');
 url.deleteLastPathComponent();
