@@ -1,3 +1,5 @@
+const { comparePropertyValue } = require('./util.js');
+
 Array.prototype.equals = function (array) {
     if (!array)
         return false;
@@ -17,7 +19,7 @@ Array.prototype.equals = function (array) {
     return true;
 }
 
-const REGEX = {
+const INDEX_OF_PARSED_URL = {
     SCHEME: 1,
     WWW: 2,
     USER_INFO: 3,
@@ -49,7 +51,7 @@ module.exports = class URL {
         this.analysis(url);
     }
 
-    // https://stackoverflow.com/a/5717133
+    // 참고 : https://stackoverflow.com/a/5717133
     validCheck(url) {
         const regex = /(https?|file):\/\/(www\.)?([a-zA-Z0-9-:!#$%^&*()_+=-]*?[@])?([-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b)[:]?([0-9]*)?([-a-zA-Z0-9()@:%_\+.~#/=]*)?[?]?([-a-zA-Z0-9()@:%_\+.~#=?&]*)/g;
 
@@ -75,17 +77,21 @@ module.exports = class URL {
                 groups: undefined 
             ]
         */
-        
-        this.scheme = regexArr[REGEX.SCHEME];
-        this.www = regexArr[REGEX.WWW] ? regexArr[REGEX.WWW] : this.www;
-        this.isFileURL = this.scheme == "file" ? true : false;
-        this.host = regexArr[REGEX.HOST];
-        this.port = regexArr[REGEX.PORT] ? regexArr[REGEX.PORT] : this.port;
-        this.query = regexArr[REGEX.QUERY] ? regexArr[REGEX.QUERY] : this.query;
+
+        return regexArr;
+    }
+
+    setURLData(regexArr, url) {
+        this.scheme = regexArr[INDEX_OF_PARSED_URL.SCHEME];
+        this.www = regexArr[INDEX_OF_PARSED_URL.WWW] || this.www;
+        this.isFileURL = this.scheme == "file" || false;
+        this.host = regexArr[INDEX_OF_PARSED_URL.HOST];
+        this.port = regexArr[INDEX_OF_PARSED_URL.PORT] || this.port;
+        this.query = regexArr[INDEX_OF_PARSED_URL.QUERY] || this.query;
         this.absoluteString = url;
 
-        if( regexArr[REGEX.USER_INFO] ) {
-            const user_info = regexArr[REGEX.USER_INFO].split(":");
+        if( regexArr[INDEX_OF_PARSED_URL.USER_INFO] ) {
+            const user_info = regexArr[INDEX_OF_PARSED_URL.USER_INFO].split(":");
             console.log('user_info', user_info);
             if( user_info.length > 1 ) { 
                 this.user = user_info[0];
@@ -95,19 +101,19 @@ module.exports = class URL {
             }
         }
         
-        if( regexArr[REGEX.PATH] ) {
-            this.pathComponents = regexArr[REGEX.PATH].split("/");
+        if( regexArr[INDEX_OF_PARSED_URL.PATH] ) {
+            this.pathComponents = regexArr[INDEX_OF_PARSED_URL.PATH].split("/");
             this.pathComponents.shift(); // remove blank
 
             this.lastPathComponent = this.pathComponents[this.pathComponents.length - 1];
         }
-
-        this.invalid = false;
     }
+    
 
     analysis(url) {
         try {
-            this.validCheck(url);
+            const regexArr = this.validCheck(url);
+            this.setURLData(regexArr, url);
         } catch (e) {
             this.invalid = true;
             console.log(e.message);
@@ -137,42 +143,36 @@ module.exports = class URL {
 
     compareURL(com_url) {
         const com_o = com_url;
-        let r_str = "";
+        let r_str = "";     
         
-        // 완벽하게 같은 상태
-        if( 
-            this.schema == com_o.schema &&
-            this.user == com_o.user && this.password == com_o.password &&
-            this.host == com_o.host && this.port == com_o.port &&
-            this.pathComponents.equals(com_o.pathComponents) &&
-            this.lastPathComponent == com_o.lastPathComponent &&
-            this.query == com_o.query ) {
-                r_str = "완벽하게 같은 상태";
-        }
+        const conditionState = [
+            { 
+                properties : ['scheme', 'user', 'host', 'pathComponents', 'lastPathComponent', 'query'], 
+                outputStr : "완벽하게 같은 상태"
+            },
+            { 
+                properties : ['scheme', 'user', 'host', 'pathComponents'], 
+                outputStr : "scheme부터 path까지만 모두 같은 상태"
+            },
+            { 
+                properties : ['scheme', 'user', 'password', 'host', 'port'], 
+                outputStr : "scheme부터 username, password, host:port까지 같은 상태"
+            },
+            { 
+                properties : ['scheme', 'host', 'port'], 
+                outputStr : "scheme과 host:port만 같은 상태 (username, password 제외)"
+            }
+        ]
 
-        // scheme부터 path까지만 모두 같은 상태
-        else if( 
-            this.schema == com_o.schema &&
-            this.user == com_o.user && this.password == com_o.password &&
-            this.host == com_o.host && this.port == com_o.port &&
-            this.pathComponents.equals(com_o.pathComponents) ) {
-            r_str = "scheme부터 path까지만 모두 같은 상태";
-        }
-        // scheme부터 username, password, host:port까지 같은 상태
-        else if( 
-            this.schema == com_o.schema &&
-            this.user == com_o.user && this.password == com_o.password &&
-            this.host == com_o.host && this.port == com_o.port ) {
-            r_str = "scheme부터 username, password, host:port까지 같은 상태";
-        }
-        // scheme과 host:port만 같은 상태 (username, password 제외)
-        else if( 
-            this.schema == com_o.schema &&
-            this.host == com_o.host && this.port == com_o.port ) {
-            r_str = "scheme과 host:port만 같은 상태 (username, password 제외)";
-        }
-        else {
-            r_str = "그 외 서로 다른 상태";
+
+        for(let cond of conditionState) {
+            if( r_str = comparePropertyValue( 
+                    cond.properties, 
+                    this, com_o,
+                    cond.outputStr) 
+                ) {
+                return r_str;
+            }
         }
 
         return r_str;
